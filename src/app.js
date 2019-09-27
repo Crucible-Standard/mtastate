@@ -231,57 +231,59 @@ function getColorForLine(line) {
   return null;
 }
 
-  /**
-   * @param {Request} req - Express request object
-   * @param {Response} res - Express response object
-   * @param {Next} next - Express Next object
-   */
-  app.get('/:id', async (req, res, next) => {
-    const args = req.params.id;
-    const mta = new Mta({
-      key: 'MY-MTA-API-KEY-HERE', // only needed for mta.schedule() method
-      feed_id: 1, // optional, default = 1
-    });
+/**
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @param {Next} next - Express Next object
+ */
+app.get('/health', (req, res, next) => {
+  const time = process.uptime();
+  const uptime = format.toDDHHMMSS(time + '');
+  res.status(200).send({ data: {uptime: uptime, version: pkjson.version} });
+});
 
-    let response = '';
+/**
+ * @param {Request} req - Express request object
+ * @param {Response} res - Express response object
+ * @param {Next} next - Express Next object
+ */
+app.get('/:id', async (req, res, next) => {
+  const args = req.params.id;
+  const mta = new Mta({
+    key: 'MY-MTA-API-KEY-HERE', // only needed for mta.schedule() method
+    feed_id: 1, // optional, default = 1
+  });
 
-    if (!getLineKey(args)) {
-      return Promise.resolve('You must specify a valid line!');
-    }
-    const lineName = getLineKey(args);
-    await mta.status(getServiceKey(lineName)).then((train) => {
-      train.map((currentLine) => {
-        if (currentLine.name === lineName) {
-          let outStatus = sanitize(currentLine.name) + ': ' +
-            sanitize(striptags(currentLine.status));
-          let outText = sanitize(striptags(currentLine.text));
-          if (outText.length > 0) {
-            outStatus = outStatus + outText.replace(/\s+/g, ' ');
-          }
-          response = outStatus;
+  let response = '';
+
+  if (!getLineKey(args)) {
+    return Promise.resolve('You must specify a valid line!');
+  }
+  const lineName = getLineKey(args);
+  await mta.status(getServiceKey(lineName)).then((train) => {
+    train.map((currentLine) => {
+      if (currentLine.name === lineName) {
+        let outStatus = sanitize(currentLine.name) + ': ' +
+          sanitize(striptags(currentLine.status));
+        let outText = sanitize(striptags(currentLine.text));
+        if (outText.length > 0) {
+          outStatus = outStatus + outText.replace(/\s+/g, ' ');
         }
-      });
+        response = outStatus;
+      }
     });
-    res.status(200).send({ data: response});
   });
+  res.status(200).send({ data: response});
+});
 
-  /**
-   * @param {Request} req - Express request object
-   * @param {Response} res - Express response object
-   * @param {Next} next - Express Next object
-   */
-  app.get('/health', (req, res, next) => {
-    const time = process.uptime();
-    const uptime = format.toDDHHMMSS(time + '');
-    res.status(200).send({ data: {uptime: uptime, version: pkjson.version} });
-  });
 
-  // heroku dynamically assigns your app a port, so you can't set the port to a fixed number.
-  var server = app.listen(process.env.PORT || 5000, function () {
-    var host = server.address().address;
-    var port = server.address().port;
 
-    console.log('App listening at http://%s:%s', host, port);
-  });
+// heroku dynamically assigns your app a port, so you can't set the port to a fixed number.
+var server = app.listen(process.env.PORT || 5000, function () {
+  var host = server.address().address;
+  var port = server.address().port;
 
-  module.exports = server;
+  console.log('App listening at http://%s:%s', host, port);
+});
+
+module.exports = server;

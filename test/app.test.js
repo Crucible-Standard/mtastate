@@ -12,7 +12,7 @@ describe('Main', () => {
   describe('/GET facts', () => {
     it('it should have successful GET', (done) => {
       chai.request(app)
-        .get('/')
+        .get('/health')
         .end((err, res) => {
           res.should.have.status(200);
           done();
