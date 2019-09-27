@@ -20,6 +20,22 @@ describe('Main', () => {
           done();
       });
     });
+    it('it should have successful GET when providing no params', (done) => {
+      chai.request(server)
+        .get('/')
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+      });
+    });
+    it('it should have successful GET when providing line as a param', (done) => {
+      chai.request(server)
+        .get('/?line=1')
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+      });
+    });
   });
 
   describe('trainstatus', () => {
