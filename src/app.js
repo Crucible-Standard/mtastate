@@ -248,35 +248,35 @@ app.get('/health', (req, res, next) => {
  * @param {Next} next - Express Next object
  */
 app.get('/', async (req, res, next) => {
-  if ((req.query.route) && req.query.route.length > 0) {
-      const args = req.query.route;
-      const mta = new Mta({
-        key: 'MY-MTA-API-KEY-HERE', // only needed for mta.schedule() method
-        feed_id: 1, // optional, default = 1
-      });
+  if ((req.query.line) && req.query.line.length > 0) {
+    const args = req.query.line;
+    const mta = new Mta({
+      key: 'MY-MTA-API-KEY-HERE', // only needed for mta.schedule() method
+      feed_id: 1, // optional, default = 1
+    });
 
-      let response = '';
+    let response = '';
 
-      if (!getLineKey(args)) {
-        return Promise.resolve('You must specify a valid line!');
-      }
-      const lineName = getLineKey(args);
-      await mta.status(getServiceKey(lineName)).then((train) => {
-        train.map((currentLine) => {
-          if (currentLine.name === lineName) {
-            let outStatus = sanitize(currentLine.name) + ': ' +
-              sanitize(striptags(currentLine.status));
-            let outText = sanitize(striptags(currentLine.text));
-            if (outText.length > 0) {
-              outStatus = outStatus + outText.replace(/\s+/g, ' ');
-            }
-            response = outStatus;
+    if (!getLineKey(args)) {
+      res.status(200).send({ data: `You must specify a valid 'line' as a GET Param.`});
+    }
+    const lineName = getLineKey(args);
+    await mta.status(getServiceKey(lineName)).then((train) => {
+      train.map((currentLine) => {
+        if (currentLine.name === lineName) {
+          let outStatus = sanitize(currentLine.name) + ': ' +
+            sanitize(striptags(currentLine.status));
+          let outText = sanitize(striptags(currentLine.text));
+          if (outText.length > 0) {
+            outStatus = outStatus + outText.replace(/\s+/g, ' ');
           }
-        });
+          response = outStatus;
+        }
       });
-      res.status(200).send({ data: response});
+    });
+    res.status(200).send({ data: response});
   } else {
-    res.status(200).send({ data: "Please use the endpoint with a get param of `route`. example https://mtastate.herokuapp.com/?route=123" });
+    res.status(200).send({ data: `Please use the endpoint with a get param of 'line'. example https://mtastate.herokuapp.com/?line=123` });
   }
 });
 
