@@ -242,6 +242,11 @@ app.get('/health', (req, res, next) => {
   res.status(200).send({ data: {uptime: uptime, version: pkjson.version} });
 });
 
+app.get('/', (req, res, next) => {
+  res.status(200).send({ data: "Please use the endpoint with a /trainline. Example /A or /123" });
+});
+
+
 /**
  * @param {Request} req - Express request object
  * @param {Response} res - Express response object
@@ -276,12 +281,10 @@ app.get('/:id', async (req, res, next) => {
   res.status(200).send({ data: response});
 });
 
-
-
 // heroku dynamically assigns your app a port, so you can't set the port to a fixed number.
-var server = app.listen(process.env.PORT || 5000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
+const server = app.listen(process.env.PORT || 5000, function () {
+  const host = server.address().address;
+  const port = server.address().port;
 
   console.log('App listening at http://%s:%s', host, port);
 });

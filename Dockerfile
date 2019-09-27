@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:10.15.0
+FROM mhart/alpine-node:10.15.2
 
 # install git creating working directory
 RUN apk update && apk upgrade && \
