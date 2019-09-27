@@ -36,6 +36,14 @@ describe('Main', () => {
           done();
       });
     });
+    it('it should have successful GET when providing an invide line as a param', (done) => {
+      chai.request(server)
+        .get('/?line=tacobell')
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+      });
+    });
   });
 
   describe('trainstatus', () => {
