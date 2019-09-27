@@ -1,0 +1,33 @@
+{
+  "name": "mtastate",
+  "version": "0.1.0",
+  "description": "an API to return information about trains in the greater NYC area",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wh-iterabb-it/mtastate"
+  },
+  "bugs": {
+    "url": "https://github.com/wh-iterabb-it/mtastate/issues"
+  },
+  "homepage": "https://github.com/wh-iterabb-it/mtastate#readme",
+  "license": "GPL-3.0",
+  "scripts": {
+    "cover": "nyc npm test && nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
+    "start": "node ./src/app.js",
+    "test": "node_modules/.bin/mocha test/. --recursive"
+  },
+  "dependencies": {
+    "chai-http": "4.3.0",
+    "express": "4.17.1",
+    "helmet": "3.21.1",
+    "mta-gtfs": "^1.1.0",
+    "server-side-tools": "git+https://github.com/wh-iterabb-it/server-side-tools.git",
+    "striptags": "^3.1.1"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "codecov": "3.6.0",
+    "mocha": "6.2.0",
+    "nyc": "14.1.1"
+  }
+}
