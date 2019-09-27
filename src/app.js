@@ -286,4 +286,4 @@ var server = app.listen(process.env.PORT || 5000, function () {
   console.log('App listening at http://%s:%s', host, port);
 });
 
-module.exports = server;
+module.exports = {server, getColorForLine, getServiceKey, getLineKey};
