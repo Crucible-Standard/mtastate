@@ -242,43 +242,42 @@ app.get('/health', (req, res, next) => {
   res.status(200).send({ data: {uptime: uptime, version: pkjson.version} });
 });
 
-app.get('/', (req, res, next) => {
-  res.status(200).send({ data: "Please use the endpoint with a /trainline. Example /A or /123" });
-});
-
-
 /**
  * @param {Request} req - Express request object
  * @param {Response} res - Express response object
  * @param {Next} next - Express Next object
  */
-app.get('/:id', async (req, res, next) => {
-  const args = req.params.id;
-  const mta = new Mta({
-    key: 'MY-MTA-API-KEY-HERE', // only needed for mta.schedule() method
-    feed_id: 1, // optional, default = 1
-  });
+app.get('/', async (req, res, next) => {
+  if ((req.query.route) && req.query.route.length > 0) {
+      const args = req.query.route;
+      const mta = new Mta({
+        key: 'MY-MTA-API-KEY-HERE', // only needed for mta.schedule() method
+        feed_id: 1, // optional, default = 1
+      });
 
-  let response = '';
+      let response = '';
 
-  if (!getLineKey(args)) {
-    return Promise.resolve('You must specify a valid line!');
-  }
-  const lineName = getLineKey(args);
-  await mta.status(getServiceKey(lineName)).then((train) => {
-    train.map((currentLine) => {
-      if (currentLine.name === lineName) {
-        let outStatus = sanitize(currentLine.name) + ': ' +
-          sanitize(striptags(currentLine.status));
-        let outText = sanitize(striptags(currentLine.text));
-        if (outText.length > 0) {
-          outStatus = outStatus + outText.replace(/\s+/g, ' ');
-        }
-        response = outStatus;
+      if (!getLineKey(args)) {
+        return Promise.resolve('You must specify a valid line!');
       }
-    });
-  });
-  res.status(200).send({ data: response});
+      const lineName = getLineKey(args);
+      await mta.status(getServiceKey(lineName)).then((train) => {
+        train.map((currentLine) => {
+          if (currentLine.name === lineName) {
+            let outStatus = sanitize(currentLine.name) + ': ' +
+              sanitize(striptags(currentLine.status));
+            let outText = sanitize(striptags(currentLine.text));
+            if (outText.length > 0) {
+              outStatus = outStatus + outText.replace(/\s+/g, ' ');
+            }
+            response = outStatus;
+          }
+        });
+      });
+      res.status(200).send({ data: response});
+  } else {
+    res.status(200).send({ data: "Please use the endpoint with a get param of `route`. example https://mtastate.herokuapp.com/?route=123" });
+  }
 });
 
 // heroku dynamically assigns your app a port, so you can't set the port to a fixed number.
