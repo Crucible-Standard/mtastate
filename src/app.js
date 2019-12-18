@@ -57,7 +57,7 @@ app.get('/health', (req, res, next) => {
  */
 app.post('/slack', (req, res, next) => {
   requestsCount++;
-  logger.info(`/ request from ${req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip}`);
+  logger.info(`/slack request from ${req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip}`);
   status.getSingle(req).then((response) => {
     res.status(200).send({ response_type: 'in_channel', text: response });
   }).catch((error) => {
