@@ -204,7 +204,7 @@ function getColorForLine(line) {
 }
 
 function getSingle (req) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     if (((req.query.line) && req.query.line.length > 0) || ((req.body.text) && req.body.text.length > 0)) {
       const args = req.query.line;
       const mta = new Mta({
@@ -219,6 +219,7 @@ function getSingle (req) {
       }
       const lineName = getLineKey(args);
       await mta.status(getServiceKey(lineName)).then((train) => {
+        try {
         train.map((currentLine) => {
           if (currentLine.name === lineName) {
             let outStatus = sanitize(currentLine.name) + ': ' +
@@ -229,12 +230,18 @@ function getSingle (req) {
             }
             response = outStatus;
           }
-        });
+        })
+        } catch(error) {
+          resolve(error);
+        };
       });
       resolve(response);
+
     } else {
       reject(`Please use the endpoint with a get param of 'line'. example https://mtastate.herokuapp.com/?line=123`);
     }
+  });
+
 }
 
-module.exports = {getSingle}
+module.exports = {getSingle, getColorForLine, getServiceKey, getLineKey};

@@ -1,4 +1,5 @@
-const {server, getColorForLine, getServiceKey, getLineKey} = require('../src/app');
+const {server} = require('../src/app');
+const {getColorForLine, getServiceKey, getLineKey} = require('../src/models/');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const should = chai.should();

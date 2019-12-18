@@ -7,6 +7,8 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const pkjson = require('../package.json');
 
+const status = require('./models/');
+
 const app = express()
 
 let requestsCount = 0;
@@ -53,7 +55,7 @@ app.get('/health', (req, res, next) => {
 app.post('/slack', (req, res, next) => {
   requestsCount++;
   logger.info(`/ request from ${req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip}`);
-  weather.getSingle(req).then((response) => {
+  status.getSingle(req).then((response) => {
     res.status(200).send({ response_type: 'in_channel', text: response });
   }).catch((error) => {
     res.status(400).send({ response_type: 'in_channel', text: response });
@@ -66,13 +68,15 @@ app.post('/slack', (req, res, next) => {
  * @param {Response} res - Express response object
  * @param {Next} next - Express Next object
  */
-app.post('/', (req, res, next) => {
+app.get('/', (req, res, next) => {
   requestsCount++;
   logger.info(`/ request from ${req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip}`);
-  weather.getSingle(req).then((response) => {
+
+  const errors = status.getSingle(req).then((response) => {
     res.status(200).send({ data: response });
-  }).catch((error) => {
-    res.status(400).send({ data: response });
+  });
+  errors.catch((error) => {
+    res.status(200).send({ data: error });
   });
 });
 
@@ -84,4 +88,4 @@ const server = app.listen(process.env.PORT || 5000, function () {
   console.log('App listening at http://%s:%s', host, port);
 });
 
-module.exports = {server, getColorForLine, getServiceKey, getLineKey};
+module.exports = {server};
