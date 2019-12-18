@@ -41,10 +41,13 @@ logger.info('turning on app...');
  * @param {Next} next - Express Next object
  */
 app.get('/health', (req, res, next) => {
+  requestsCount++;
   const time = process.uptime();
   const uptime = format.toDDHHMMSS(time + '');
-  res.status(200).send({ data: {uptime: uptime, version: pkjson.version} });
+  logger.info(`/health request from ${req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.ip}`);
+  res.status(200).send({ data: {uptime: uptime, version: pkjson.version, requests: requestsCount} });
 });
+
 
 /**
  * This will be reserved for slack intigration
