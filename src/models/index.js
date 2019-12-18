@@ -206,7 +206,7 @@ function getColorForLine(line) {
 function getSingle (req) {
   return new Promise(async (resolve, reject) => {
     if (((req.query.line) && req.query.line.length > 0) || ((req.body.text) && req.body.text.length > 0)) {
-      const args = req.query.line;
+      const args = req.query.line || req.body.text;
       const mta = new Mta({
         key: 'MY-MTA-API-KEY-HERE', // only needed for mta.schedule() method
         feed_id: 1, // optional, default = 1
