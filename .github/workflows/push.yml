@@ -1,0 +1,30 @@
+name: Node Integration Process
+
+on:
+  push: {branches: main}
+  pull_request: {branches: main}
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with: {node-version: 12.x}
+    steps:
+      - name: Checking Out Commits Securely..
+        uses: actions/checkout@v2
+      - name: Setup Node 12.x Environment...
+        uses: actions/setup-node@v1
+        with: 
+          node-version: 12.x
+          registry-url: https://npm.pkg.github.com/
+          scope: "@wh-iterabb-it"
+      - name: Installing Dependencies...
+        working-directory: .
+        run: npm ci
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Running npm run lint...
+        working-directory: .
+        run: npm run lint
