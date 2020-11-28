@@ -20,7 +20,7 @@ jobs:
         working-directory: .
         run: npm install
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.NPM_REPO_TOKEN}}
       - name: Running npm run test...
         working-directory: .
         run: npm run test
