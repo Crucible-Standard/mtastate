@@ -21,7 +21,6 @@
     "express": "4.17.1",
     "helmet": "3.23.2",
     "mta-gtfs": "^1.1.0",
-    "newrelic": "^6.11.0",
     "server-side-tools": "git+https://github.com/wh-iterabb-it/server-side-tools.git",
     "striptags": "^3.1.1"
   },
