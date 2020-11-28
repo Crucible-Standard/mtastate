@@ -24,6 +24,6 @@ jobs:
         run: npm ci
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      - name: Running npm run lint...
+      - name: Running npm run test...
         working-directory: .
-        run: npm run lint
+        run: npm run test
