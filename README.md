@@ -1,7 +1,6 @@
 mtastate
 =========
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/wh-iterabb-it/mtastate.svg)](https://greenkeeper.io/)
 [![Dependency Status](https://img.shields.io/david/wh-iterabb-it/mtastate.svg?style=flat)](https://david-dm.org/wh-iterabb-it/mtastate#info=Dependencies)
 [![devDependency Status](https://img.shields.io/david/dev/wh-iterabb-it/mtastate.svg?style=flat)](https://david-dm.org/wh-iterabb-it/mtastate#info=devDependencies)
 [![codecov](https://codecov.io/gh/wh-iterabb-it/mtastate/branch/master/graph/badge.svg)](https://codecov.io/gh/wh-iterabb-it/mtastate)
