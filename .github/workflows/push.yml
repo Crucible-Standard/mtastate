@@ -21,7 +21,7 @@ jobs:
           scope: "@wh-iterabb-it"
       - name: Installing Dependencies...
         working-directory: .
-        run: npm ci
+        run: npm install
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Running npm run test...
