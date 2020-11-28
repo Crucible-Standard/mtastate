@@ -6,6 +6,7 @@ on:
 
 jobs:
   ci:
+    name: Node Integration Process
     runs-on: ubuntu-latest
     steps:
       - name: Checking Out Commits Securely..
