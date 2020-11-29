@@ -6,6 +6,7 @@ on:
 
 jobs:
   ci:
+    name: npm run Test
     runs-on: ubuntu-latest
     steps:
       - name: Checking Out Commits Securely..
@@ -20,7 +21,7 @@ jobs:
         working-directory: .
         run: npm install
         env:
-          GITHUB_TOKEN: ${{secrets.NPM_BISCUIT_TOKEN}}
+          NPM_BISCUIT_TOKEN: ${{secrets.NPM_BISCUIT_TOKEN}}
       - name: Running npm run test...
         working-directory: .
         run: npm run test
