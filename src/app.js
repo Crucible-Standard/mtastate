@@ -1,5 +1,5 @@
-const logger = require('@wh-iterabb-it/sst').logger;
-const format = require('@wh-iterabb-it/sst').format;
+const logger = require('sst').logger;
+const format = require('sst').format;
 
 const express = require('express');
 const helmet = require('helmet');

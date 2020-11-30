@@ -1,6 +1,6 @@
 {
   "name": "mtastate",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "an API to return information about trains in the greater NYC area",
   "repository": {
     "type": "git",
@@ -17,11 +17,11 @@
     "test": "node_modules/.bin/mocha test/. --recursive"
   },
   "dependencies": {
+    "@wh-iterabb-it/sst": "^1.3.1",
     "chai-http": "4.3.0",
     "express": "4.17.1",
     "helmet": "4.2.0",
     "mta-gtfs": "^1.1.0",
-    "sst": "git+https://github.com/wh-iterabb-it/sst.git",
     "striptags": "^3.1.1"
   },
   "devDependencies": {

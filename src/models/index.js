@@ -1,4 +1,4 @@
-const sanitize = require('@wh-iterabb-it/sst').sanitize;
+const sanitize = require('sst').sanitize;
 
 const Mta = require('mta-gtfs');
 const striptags = require('striptags');
