@@ -21,7 +21,7 @@ jobs:
         working-directory: .
         run: npm install
         env:
-          NPM_BISCUIT_TOKEN: ${{secrets.GIT_NPM_AUTH_TOKEN}}
+          GIT_NPM_AUTH_TOKEN: ${{secrets.GIT_NPM_AUTH_TOKEN}}
       - name: Running npm run test...
         working-directory: .
         run: npm run test
