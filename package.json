@@ -14,20 +14,27 @@
   "scripts": {
     "cover": "nyc npm test && nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
     "start": "node ./src/app.js",
-    "test": "node_modules/.bin/mocha test/. --recursive"
+    "test": "node_modules/.bin/mocha tests/. --recursive",
+    "test:lint": "eslint .",
+    "test:lint:fix": "eslint . --fix --ignore-pattern polyfills"
   },
   "dependencies": {
-    "sst": "git+https://github.com/wh-iterabb-it/sst.git",
     "chai-http": "4.3.0",
-    "express": "4.17.1",
-    "helmet": "4.4.1",
+    "express": "4.18.1",
+    "helmet": "4.1.1",
     "mta-gtfs": "1.1.0",
-    "striptags": "3.1.1"
+    "sst": "git+https://github.com/wh-iterabb-it/sst.git",
+    "striptags": "3.2.0"
   },
   "devDependencies": {
-    "chai": "4.3.3",
-    "codecov": "3.8.1",
-    "mocha": "8.3.1",
+    "chai": "4.2.0",
+    "codecov": "3.8.3",
+    "eslint": "8.15.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "mocha": "10.0.0",
+    "prettier": "2.6.2",
     "nyc": "15.1.0"
   }
 }
