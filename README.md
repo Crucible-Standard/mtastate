@@ -1,8 +1,10 @@
 mtastate
 =========
 
-[![codecov](https://codecov.io/gh/wh-iterabb-it/mtastate/branch/master/graph/badge.svg)](https://codecov.io/gh/wh-iterabb-it/mtastate)
-
+![Known Vulnerabilities](https://snyk.io/test/github/wh-iterabb-it/mtastate/badge.svg) 
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/wh-iterabb-it/mtastate.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/wh-iterabb-it/mtastate/alerts/) 
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/wh-iterabb-it/mtastate.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/wh-iterabb-it/mtastate/context:javascript)
+[![codecov](https://codecov.io/gh/wh-iterabb-it/mtastate/branch/main/graph/badge.svg)](https://codecov.io/gh/wh-iterabb-it/mtastate)
 
 
 ### Description:
