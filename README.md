@@ -1,7 +1,7 @@
 mtastate
 =========
 
-![Known Vulnerabilities](https://snyk.io/test/github/Crucible-Standard/mtastate/badge.svg) 
+[![Known Vulnerabilities](https://snyk.io/test/github/Crucible-Standard/mtastate/badge.svg)](#)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/Crucible-Standard/mtastate.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Crucible-Standard/mtastate/alerts/) 
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Crucible-Standard/mtastate.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Crucible-Standard/mtastate/context:javascript)
 [![codecov](https://codecov.io/gh/Crucible-Standard/mtastate/branch/main/graph/badge.svg)](https://codecov.io/gh/Crucible-Standard/mtastate)
