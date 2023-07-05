@@ -7,22 +7,58 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  ci:
+  lints:
+    name: lints
     runs-on: ubuntu-latest
     steps:
-      - name: Checking Out Commits Securely..
+      - name: Checking Out Commits Securely . . .
         uses: actions/checkout@v2
-      - name: Setup Node 14.x Environment...
-        uses: actions/setup-node@v1
+      - name: Setup Node 16 Environment . . .
+        uses: actions/setup-node@v3
         with:
-          node-version: 14.x
-          registry-url: https://npm.pkg.github.com/
-          scope: "@wh-iterabb-it"
-      - name: Installing Dependencies...
+          node-version: 16
+      - name: Install Dependencies . . .
         working-directory: .
         run: npm ci
         env:
           GITHUB_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
-      - name: Running npm run test...
+      - name: Run The Lints . . .
+        run: npm run test:lint
+  tests:
+    name: tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking Out Commits Securely . . .
+        uses: actions/checkout@v2
+      - name: Setup Node 16 Environment . . .
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependencies . . .
         working-directory: .
+        run: npm ci
+        env:
+          GITHUB_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
+      - name: Run The Tests . . .
         run: npm run test
+  coverage:
+    name: coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking Out Commits Securely . . .
+        uses: actions/checkout@v2
+      - name: Setup Node 16 Environment . . .
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependencies . . .
+        working-directory: .
+        run: npm ci
+        env:
+          GITHUB_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
+      - name: Run The Tests . . .
+        run: npm run test:coverage 
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
