@@ -12,7 +12,7 @@
   "homepage": "https://github.com/wh-iterabb-it/mtastate#readme",
   "license": "GPL-3.0",
   "scripts": {
-    "cover": "nyc npm test && nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
+    "test:coverage": "nyc npm test && nyc report --reporter=text-lcov > coverage.lcov && ./node_modules/.bin/codecov",
     "start": "node ./src/app.js",
     "test": "node_modules/.bin/mocha tests/. --recursive",
     "test:lint": "eslint .",
