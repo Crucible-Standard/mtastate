@@ -1,9 +1,10 @@
 mtastate
 =========
 
-[![Known Vulnerabilities](https://snyk.io/test/github/Crucible-Standard/mtastate/badge.svg)](#)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/Crucible-Standard/mtastate.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Crucible-Standard/mtastate/alerts/) 
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/Crucible-Standard/mtastate.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Crucible-Standard/mtastate/context:javascript)
+[![Issues](https://img.shields.io/github/issues/Crucible-Standard/mtastate.svg)](https://github.com/Crucible-Standard/mtastate/issues)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Crucible-Standard/mtastate/blob/main/LICENSE)
+![Known Vulnerabilities](https://snyk.io/test/github/Crucible-Standard/mtastate/badge.svg)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![codecov](https://codecov.io/gh/Crucible-Standard/mtastate/branch/main/graph/badge.svg)](https://codecov.io/gh/Crucible-Standard/mtastate)
 
 
