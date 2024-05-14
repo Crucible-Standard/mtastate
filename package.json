@@ -20,16 +20,16 @@
   },
   "dependencies": {
     "chai-http": "4.4.0",
-    "express": "4.18.2",
-    "helmet": "7.0.0",
+    "express": "4.19.2",
+    "helmet": "7.1.0",
     "mta-gtfs": "1.1.0",
     "sst": "git+https://github.com/wh-iterabb-it/sst.git",
     "striptags": "3.2.0"
   },
   "devDependencies": {
-    "chai": "4.3.7",
+    "chai": "4.3.10",
     "codecov": "3.8.3",
-    "eslint": "8.44.0",
+    "eslint": "8.50.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-import": "2.28.1",
     "eslint-plugin-prettier": "4.2.1",
